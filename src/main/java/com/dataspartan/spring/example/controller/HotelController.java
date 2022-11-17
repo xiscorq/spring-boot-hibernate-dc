@@ -49,7 +49,7 @@ public class HotelController {
 	}
 
 	@GetMapping("/hotels/{id}")
-	public ResponseEntity<Hotel> getTutorialById(@PathVariable("id") long id) {
+	public ResponseEntity<Hotel> getHotelById(@PathVariable("id") long id) {
 		Optional<Hotel> tutorialData = hotelRepository.findById(id);
 
 		if (tutorialData.isPresent()) {
@@ -60,7 +60,7 @@ public class HotelController {
 	}
 
 	@PostMapping("/hotels")
-	public ResponseEntity<Hotel> createTutorial(@RequestBody Hotel tutorial) {
+	public ResponseEntity<Hotel> createHotel(@RequestBody Hotel tutorial) {
 		try {
 			Hotel _tutorial = hotelRepository
 					.save(new Hotel(tutorial.getName(), tutorial.getDescription(), tutorial.getStars()));
@@ -71,7 +71,7 @@ public class HotelController {
 	}
 
 	@PutMapping("/hotels/{id}")
-	public ResponseEntity<Hotel> updateTutorial(@PathVariable("id") long id, @RequestBody Hotel tutorial) {
+	public ResponseEntity<Hotel> updateHotel(@PathVariable("id") long id, @RequestBody Hotel tutorial) {
 		Optional<Hotel> tutorialData = hotelRepository.findById(id);
 
 		if (tutorialData.isPresent()) {
@@ -86,7 +86,7 @@ public class HotelController {
 	}
 
 	@DeleteMapping("/hotels/{id}")
-	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+	public ResponseEntity<HttpStatus> deleteHotel(@PathVariable("id") long id) {
 		try {
 			hotelRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -96,7 +96,7 @@ public class HotelController {
 	}
 
 	@DeleteMapping("/hotels")
-	public ResponseEntity<HttpStatus> deleteAllTutorials() {
+	public ResponseEntity<HttpStatus> deleteAllHotels() {
 		try {
 			hotelRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
