@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-application 
+  name: web-application 
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: web-application
+  template:
+    metadata:
+      labels:
+        app: web-application
+    spec:
+      containers:
+      - image: example/boot2:latest
+        name: web-application
+        imagePullPolicy: Never        
+        env:
+          - name: DATASOURCE_URL
+            value: "jdbc:mysql://mysql-service.default.svc.cluster.local:3306/app_db?allowPublicKeyRetrieval=true&useSSL=false"
+          - name: DATASOURCE_USER
+            value: "riu"
+          - name: DATASOURCE_PASSWORD
+            value: "123456"
+          - name: DATASOURCE_DIALECT
+            value: "org.hibernate.dialect.MySQL8Dialect"
+          - name: DATASOURCE_DDL_MANAGEMENT_POLICY
+            value: "update"
+          - name: SPRING_DOCKER_PORT            
+            value: "8081"
