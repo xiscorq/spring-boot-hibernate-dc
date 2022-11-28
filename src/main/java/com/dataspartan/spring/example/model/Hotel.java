@@ -1,28 +1,24 @@
 package com.dataspartan.spring.example.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "hotel")
 public class Hotel {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	private long id;
 
-	@Column(name = "name")
+
 	private String name;
 
-	@Column(name = "description")
+
 	private String description;
 
-	@Column(name = "stars")
+
 	private int stars;
+	
+	
+	private int example;
 
 	public Hotel() {
 
